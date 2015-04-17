@@ -1,0 +1,13 @@
+Server*/
+.project
+.classpath
+.gradle/
+.metadata/
+.settings/
+classes/
+target/
+build/
+bin/
+*~
+~*
+.swp

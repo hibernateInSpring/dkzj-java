@@ -1,0 +1,9 @@
+group = 'com.dkzj'
+version = '${versions.com_dkzj}'
+
+dependencies{
+	compile project(':dkzj-common')
+	compile libraries.mysql
+	compile libraries.dbcp
+	compile libraries.spring_data
+}

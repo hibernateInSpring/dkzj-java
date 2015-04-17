@@ -1,0 +1,10 @@
+apply plugin : 'war'
+group = 'com.dkzj'
+version = "${versions.com_dkzj}"
+
+dependencies {
+	compile project(':dkzj-common')
+	compile project(':dkzj-database')
+
+	compile libraries.freemarker
+}
