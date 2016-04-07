@@ -1,3 +1,4 @@
+apply plugin : 'eclipse-wtp'
 apply plugin : 'war'
 group = 'com.dkzj'
 version = "${versions.com_dkzj}"

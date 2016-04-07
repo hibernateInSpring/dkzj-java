@@ -23,18 +23,12 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
-	<!--
-	<import resource="classpath*:spring/fit-monitor-min-ctx.xml"/>
-	-->
-
-
 	<!-- spring mvc 配置 -->
 	<mvc:resources mapping="/resources/js/**" location="/resources/js/" />
 	<mvc:resources mapping="/resources/css/**" location="/resources/css/" />
 	<mvc:resources mapping="/resources/img/**" location="/resources/img/" />
 
 	<context:component-scan base-package="com.dkzj.front.controller" />
-
 	<mvc:default-servlet-handler/>
 
 	<!-- freemarker配置 -->
@@ -47,10 +41,25 @@
 		<property name="requestContextAttribute" value="req" />
 		<property name="allowSessionOverride" value="true" />
 	</bean>
-
 	<bean id="freemarkerConfiguration"
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-		<property name="location" value="classpath:freemarker.properties" />
+		<property name="location" value="classpath:spring/freemarker.properties" />
+	</bean>
+
+	<bean id="freemarkerConfig"	class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="templateLoaderPaths">
+			  <list>
+			     <value>/WEB-INF/</value>
+			  </list>
+		  </property>
+		<property name="freemarkerSettings" ref="freemarkerConfiguration">
+		</property>
+
+		<!-- 全局变量部分 -->
+		<property name="freemarkerVariables">
+			<map></map>
+		</property>
 	</bean>
 
 	<!-- upload文件设置 -->
@@ -58,11 +67,8 @@
 		<!-- one of the properties available; the maximum file size in bytes ;  now 2M-->
 		<property name="maxUploadSize" value="2097152" />
 	</bean>
-
 	<!-- 全局异常 -->
-	<!--
-	<bean id="exceptionResolver" class="com.travelzen.tops.front.fit.common.utils.CustomizedHandlerExceptionResolver" />
-	 -->
-
-	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.HandlerExceptionResolverComposite" />
+	<!-- json转换 -->
+	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
 </beans>
